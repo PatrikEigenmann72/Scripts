@@ -31,6 +31,6 @@ Main-Class: App
 "@ | Set-Content $manifest -Encoding ASCII
 
 Write-Host "Packaging $jarName into $targetDir..."
-jar cfm "$targetDir\$jarName" $manifest -C $buildDir . -C resources .
+jar cfm "$targetDir\$jarName" $manifest -C $buildDir . resources
 
 Write-Host "Published to $targetDir\$jarName"

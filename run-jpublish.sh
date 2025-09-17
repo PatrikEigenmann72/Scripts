@@ -30,6 +30,6 @@ Main-Class: App
 EOF
 
 echo "Packaging $jarName into $targetDir..."
-jar cfm "$targetDir/$jarName" "$manifest" -C "$buildDir" . -C resources .
+jar cfm "$targetDir/$jarName" "$manifest" -C "$buildDir" . resources
 
 echo "Published to $targetDir/$jarName"
