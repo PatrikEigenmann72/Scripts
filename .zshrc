@@ -16,7 +16,7 @@
 #export PATH="/opt/homebrew/opt/php@8.3/sbin:$PATH"
 #export PATH="$HOME/Development/scripts:$PATH"
 #export PATH="/opt/homebrew/opt/ncurses/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/Development/Scripts:$PATH"
 #export LDFLAGS="-L/opt/homebrew/opt/ncurses/lib"
 #export CPPFLAGS="-I/opt/homebrew/opt/ncurses/include"
