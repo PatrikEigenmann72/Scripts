@@ -56,4 +56,4 @@ fi
 rm sources.txt
 
 # Run the application
-java -cp "build:$CLASSPATH" App -debug
+java -cp ".:build:$CLASSPATH" App -debug

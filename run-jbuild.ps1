@@ -20,4 +20,4 @@ Get-ChildItem -Path $srcDir -Recurse -Filter *.java |
 javac --% -d .\build @sources.txt
 
 #Write-Host "Running App.class..."
-java -cp .\build App -debug
+java -cp ".;build" App -debug
