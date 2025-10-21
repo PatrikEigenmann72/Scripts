@@ -12,15 +12,10 @@
 # In this section I have extended my $PATH variable with the homebrew specific paths
 # and the path of my own binaries from my C/C++ programming. Copy and paste is here
 # my friend if I ever want to add more sprecific path to the $PATH variable. 
-#export PATH="/opt/homebrew/opt/php@8.3/bin:$PATH"
-#export PATH="/opt/homebrew/opt/php@8.3/sbin:$PATH"
-#export PATH="$HOME/Development/scripts:$PATH"
-#export PATH="/opt/homebrew/opt/ncurses/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/Development/Scripts:$PATH"
-#export LDFLAGS="-L/opt/homebrew/opt/ncurses/lib"
-#export CPPFLAGS="-I/opt/homebrew/opt/ncurses/include"
 export DYLD_LIBRARY_PATH="/Users/patrik/Development/cpp/mylibs/bin:."
+export PATH="/usr/local/mysql/bin:$PATH"
 
 # Alias section A: All global use aliases.
 alias ..='cd ..'
@@ -49,6 +44,7 @@ alias cvim='cd ~/Development/cpp/viim'
 # Java-Projects
 alias jdbg='run-jbuild.sh'
 alias jpbl='run-jpublish.sh'
+alias jget='get-jcomponent.sh'
 
 # All Nano Log and Config files.
 alias nzsh='nano ~/.zshrc'
@@ -65,5 +61,3 @@ alias run='./scripts/run.sh'
 alias pack='./scripts/pack.sh'
 alias clrbin='rm -rf ./bin/*'
 alias clrbld='rm -rf ./build/*'
-
-export PATH="/usr/local/mysql/bin:$PATH"
