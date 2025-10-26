@@ -43,8 +43,14 @@ alias cvim='cd ~/Development/cpp/viim'
 alias jdbg='run-jbuild.sh'
 alias jpbl='run-jpublish.sh'
 
+# This function will copy an existing file from the HelloJWorld project.
 jget() {
 /Users/patrik/Development/Scripts/get-jcomponent.sh "$@"
+}
+
+# This function will copy a new file from one of the templates.
+jnew() {
+/Users/patrik/Development/Scripts/get-jnew.sh "$@"
 }
 
 # All Nano Log and Config files.
