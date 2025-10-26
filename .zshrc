@@ -11,11 +11,11 @@
 
 # In this section I have extended my $PATH variable with the homebrew specific paths
 # and the path of my own binaries from my C/C++ programming. Copy and paste is here
-# my friend if I ever want to add more sprecific path to the $PATH variable. 
+# my friend if I ever want to add more sprecific path to the $PATH variable.
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/Development/Scripts:$PATH"
-export DYLD_LIBRARY_PATH="/Users/patrik/Development/cpp/mylibs/bin:."
 export PATH="/usr/local/mysql/bin:$PATH"
+export DYLD_LIBRARY_PATH="/Users/patrik/Development/cpp/mylibs/bin:."
 
 # Alias section A: All global use aliases.
 alias ..='cd ..'
@@ -23,7 +23,6 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias rld='exec zsh'
 alias dir='ls -al'
-alias rwww='brew services restart httpd'
 alias vimp='cd ~/Documents/Private/Vim'
 
 # Development specific aliases.
@@ -31,7 +30,6 @@ alias dev='cd ~/Development'
 alias dscript='cd ~/Development/scripts'
 alias djava='cd ~/Development/Java'
 alias dcpp='cd ~/Development/cpp'
-alias src='cd ./src'
 alias ppp='cd ~/Development/php'
 alias pyt='cd ~/Development/python'
 alias tem='cd ~/Development/templates'
@@ -44,20 +42,16 @@ alias cvim='cd ~/Development/cpp/viim'
 # Java-Projects
 alias jdbg='run-jbuild.sh'
 alias jpbl='run-jpublish.sh'
-alias jget='get-jcomponent.sh'
+
+jget() {
+/Users/patrik/Development/Scripts/get-jcomponent.sh "$@"
+}
 
 # All Nano Log and Config files.
 alias nzsh='nano ~/.zshrc'
-alias nhtt='nano /opt/homebrew/etc/httpd/httpd.conf'
-alias nvhs='nano /opt/homebrew/etc/httpd/extra/httpd-vhosts.conf'
 alias nhst='sudo nano /etc/hosts'
 alias ndev='nano ~/Development/Development.code-workspace'
 alias nlog='nano ~/Library/Logs/samael/samael.log'
-alias nwbs='nano /opt/homebrew/var/log/httpd/wbsrvr-access_log'
-alias nwbe='nano /opt/homebrew/var/log/httpd/wbsrvr-error_log'
 alias cwlg='echo "" > "/Users/patrik/VirtualBox VMs/Windows11/Logs/VBox.log"'
-alias compile='./scripts/compile.sh'
-alias run='./scripts/run.sh'
-alias pack='./scripts/pack.sh'
 alias clrbin='rm -rf ./bin/*'
 alias clrbld='rm -rf ./build/*'
