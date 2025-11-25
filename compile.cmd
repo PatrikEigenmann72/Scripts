@@ -14,5 +14,5 @@ if "%1"=="-debug" (
     gcc -Wall -Wextra -std=c99 -Iinclude src\*.c -o bin\%PROJECT%.exe
 )
 
-echo Done. Type "%PROJECT%" to begin.
+echo Done. Type "bin\%PROJECT%" to begin.
 endlocal

@@ -13,4 +13,4 @@ if ($args.Count -gt 0 -and $args[0] -eq "-debug") {
     gcc -Wall -Wextra -std=c99 -Iinclude src\*.c -o "bin\$PROJECT.exe"
 }
 
-Write-Host "Done. Type '$PROJECT' to begin."
+Write-Host "Done. Type 'bin\$PROJECT' to begin."

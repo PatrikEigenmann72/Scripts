@@ -1,4 +1,28 @@
 #!/bin/sh
+
+show_help() {
+cat << EOF | less
+NAME
+    install.sh - build and prepare project binaries, and installs them in ~/bin
+
+SYNOPSIS
+    install.sh [OPTIONS]
+
+DESCRIPTION
+    This script takes the active directory as project name and
+    compiles the source files in src/ into a binary and drops
+    it into bin/. The new binary is then copied to ~/bin/ for easy access.
+
+OPTIONS
+    -h, -help, -?   Show this help menu
+    -debug          Compile with debug information
+
+EXAMPLES
+    install.sh
+    install.sh -debug
+EOF
+}
+
 set -e
 
 # Extract project name from current directory

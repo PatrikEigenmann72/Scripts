@@ -29,15 +29,24 @@ alias vimp='cd ~/Documents/Private/Vim'
 alias dev='cd ~/Development'
 alias dscript='cd ~/Development/scripts'
 alias djava='cd ~/Development/Java'
-alias dcpp='cd ~/Development/cpp'
 alias ppp='cd ~/Development/php'
 alias pyt='cd ~/Development/python'
 alias tem='cd ~/Development/templates'
 alias www='cd ~/Development/www'
 
 # C-Projects
-alias cpmk='cd ~/Development/cpp/pmake'
-alias cvim='cd ~/Development/cpp/viim'
+alias dcpp='cd ~/Development/cpp'
+compile() {
+/Users/patrik/Development/Scripts/compile.sh "$@"
+}
+
+install() {
+/Users/patrik/Development/Scripts/install.sh "$@"
+}
+
+cget() {
+/Users/patrik/Development/Scripts/get-ccomponent.sh "$@"
+}
 
 # Java-Projects
 alias jdbg='run-jbuild.sh'
