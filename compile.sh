@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# A simple build script for C projects. It compiles all .c files in src/ and outputs the binary to bin/ with the same name as the current directory.
 show_help() {
 cat << EOF | less
 NAME
