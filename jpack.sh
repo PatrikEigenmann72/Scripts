@@ -24,6 +24,7 @@
 # Mon 2026-04-06 Added PkgInfo file and desktop link.                   Version: 00.05
 # Mon 2026-04-06 Fixed a directory issue in the launcher script.        Version: 00.06
 # Mon 2026-04-06 Fixed a directory issue in the jar command.            Version: 00.07
+# Mon 2026-04-06 After copying the JAR, remove temporary jar folder.    Version: 00.08
 # ------------------------------------------------------------------------------------
 
 # Determine project name from current folder
@@ -106,6 +107,9 @@ fi
 # ------------------------------------------------------------------------------------
 
 cp "jar/${PROJECT_NAME}.jar" "$APP_DIR/Contents/Resources/"
+
+# Remove the temporary jar folder after copying
+rm -rf jar
 
 # ------------------------------------------------------------------------------------
 # Step 5: Create launcher script
