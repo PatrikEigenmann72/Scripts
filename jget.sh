@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script:       get-jcomponent.sh
+# Script:       jget.sh
 # Description:  Copy specified Java component (class or package) from source
 #               directory to target project src directory.
 # ----------------------------------------------------------------------------
@@ -10,6 +10,8 @@
 # Change Log:
 # Thu 2025-09-19 File created and content added.                Version: 00.01
 # Tue 2026-04-07 Preserve application-specific Config.java.     Version: 00.02
+# Tue 2026-04-08 Script get-jcomponent.sh renamed to jget.sh.   Version: 00.03
+# Tue 2026-04-08 Added Samael auto-dependencies.                Version: 00.04
 # ----------------------------------------------------------------------------
 
 SOURCE_ROOT="/Users/patrik/Development/Java/HelloJWorld/src"
@@ -21,8 +23,34 @@ TARGET_ROOT="$(pwd)/src"
 CONFIG_PATH="$TARGET_ROOT/samael/chronicle/Config.java"
 BACKUP_PATH="./Config.java_temp"
 
-cp "$CONFIG_PATH" "$BACKUP_PATH"
-echo "Preserved application Config.java"
+if [[ -f "$CONFIG_PATH" ]]; then
+    cp "$CONFIG_PATH" "$BACKUP_PATH"
+    echo "Preserved application Config.java"
+fi
+
+# ----------------------------------------------------------------------------
+# Auto-Dependency Section:
+# If the requested component is from the Samael-framework (starts with "samael."),
+# then make sure all the dependencies are copied into the active project too.
+#
+# Dependencies (all framework classes are relying on these classes):
+#   - samael.alchemy.Name.java
+#   - samael.huginandmunin.Debug.java
+# ----------------------------------------------------------------------------
+
+AUTO_DEPENDENCIES() {
+    # samael.alchemy.Name
+    mkdir -p "$TARGET_ROOT/samael/alchemy/"
+    cp "$SOURCE_ROOT/samael/alchemy/Name.java" \
+       "$TARGET_ROOT/samael/alchemy/Name.java"
+
+    # samael.huginandmunin.Debug
+    mkdir -p "$TARGET_ROOT/samael/huginandmunin/"
+    cp "$SOURCE_ROOT/samael/huginandmunin/Debug.java" \
+       "$TARGET_ROOT/samael/huginandmunin/Debug.java"
+
+    echo "Auto-dependencies copied (Name.java, Debug.java)"
+}
 
 # ----------------------------------------------------------------------------
 
@@ -32,6 +60,15 @@ if [ -z "$1" ]; then
 fi
 
 COMPONENT="$1"
+
+# Trigger auto-dependencies BEFORE copying the requested component
+if [[ "$COMPONENT" == samael.* ]]; then
+    AUTO_DEPENDENCIES
+fi
+
+# ----------------------------------------------------------------------------
+# Component Copy Logic
+# ----------------------------------------------------------------------------
 
 if [[ "$COMPONENT" == *".*" ]]; then
     BASE_COMPONENT="${COMPONENT%.*}"
@@ -78,5 +115,9 @@ fi
 # ----------------------------------------------------------------------------
 # Restore application-specific Config.java
 # ----------------------------------------------------------------------------
-mv "$BACKUP_PATH" "$CONFIG_PATH"
-echo "Restored application Config.java"
+if [[ -f "$BACKUP_PATH" ]]; then
+    mv "$BACKUP_PATH" "$CONFIG_PATH"
+    echo "Restored application Config.java"
+fi
+
+exit 0
