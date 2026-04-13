@@ -177,4 +177,3 @@ echo "Desktop link created."
 
 echo "Packaging complete."
 echo "App bundle: $APP_DIR"
-echo "JAR file: jar/${PROJECT_NAME}.jar"
