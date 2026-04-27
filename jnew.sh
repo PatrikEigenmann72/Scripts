@@ -11,11 +11,10 @@
 # ------------------------------------------------------------------------------------
 # Change Log:
 # Wed 2026-04-15 File created and project functionallity added.         Version: 00.01
-# Thu 2026-04-16 Added -class support.                                 Version: 00.02
-# Sat 2026-04-18 Added -interface support.                             Version: 00.03
-# Sun 2026-04-19 Added -enum support.                                  Version: 00.04
+# Thu 2026-04-16 Added -class support.                                  Version: 00.02
+# Sat 2026-04-18 Added -interface support.                              Version: 00.03
+# Sun 2026-04-19 Added -enum support.                                   Version: 00.04
 # ------------------------------------------------------------------------------------
-
 
 # -----------------------------------------
 # Parse parameters
