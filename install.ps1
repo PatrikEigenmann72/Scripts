@@ -1,20 +1,66 @@
-# install.ps1
+# ------------------------------------------------------------------------------------
+# Script:       install.ps1
+# Description:  Installs the already compiled binary from .\bin into ~/bin.
+#               This script does NOT compile the project. Use compile.ps1 first.
+# ------------------------------------------------------------------------------------
+# Author:       Patrik Eigenmann
+# email:        p.eigenmann72@gmail.com
+# GitHub:       https://github.com/PatrikEigenmann72/Scripts
+# ------------------------------------------------------------------------------------
+# Change Log:
+# Thu 2025-08-14 File created and content added.                        Version: 00.01
+# Thu 2026-04-30 Updated to remove compilation logic.                   Version: 00.02
+# Thu 2026-04-30 Added manpage-style help section.                     Version: 00.03
+# ------------------------------------------------------------------------------------
 
-# Extract project name from current directory
-$PROJECT = Split-Path -Leaf (Get-Location)
+param(
+    [string]$Flag
+)
 
-Write-Host "Building $PROJECT..."
-New-Item -ItemType Directory -Force -Path "bin" | Out-Null
+function Show-Help {
+@"
+NAME
+    install.ps1 - install the compiled project binary into ~/bin
 
-if ($args.Count -gt 0 -and $args[0] -eq "-debug") {
-    Write-Host "Compiling with DEBUG flag..."
-    gcc -Wall -Wextra -std=c99 -Iinclude src\*.c -o "bin\$PROJECT.exe" -DDEBUG
-} else {
-    gcc -Wall -Wextra -std=c99 -Iinclude src\*.c -o "bin\$PROJECT.exe"
+SYNOPSIS
+    .\install.ps1 [OPTIONS]
+
+DESCRIPTION
+    This script takes the active directory as project name and
+    installs the existing binary from .\bin\ into ~/bin.
+    It does NOT compile the project. Use compile.ps1 first.
+
+OPTIONS
+    -h, -help, -?   Show this help menu
+
+EXAMPLES
+    .\install.ps1
+"@ | more
 }
 
-Write-Host "Installing to $env:USERPROFILE\bin\$PROJECT.exe ..."
-New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\bin" | Out-Null
-Copy-Item "bin\$PROJECT.exe" "$env:USERPROFILE\bin\" -Force
+# Parse arguments
+if ($Flag -in @("-h", "-help", "-?")) {
+    Show-Help
+    exit
+}
 
-Write-Host "Done. Type '$PROJECT' to begin."
+# Extract project name from current directory
+$projectName = Split-Path -Leaf (Get-Location)
+$binary = ".\bin\$projectName"
+
+Write-Host "Installing $projectName..."
+
+# Ensure binary exists
+if (-not (Test-Path $binary)) {
+    Write-Host "Error: Binary '$binary' does not exist."
+    Write-Host "Run '.\compile.ps1' first."
+    exit 1
+}
+
+# Install to ~/bin
+$homeBin = Join-Path $HOME "bin"
+New-Item -ItemType Directory -Force -Path $homeBin | Out-Null
+Copy-Item $binary $homeBin -Force
+
+Write-Host "Installed to $homeBin\$projectName"
+Write-Host "Done. Type '$projectName' to run it."

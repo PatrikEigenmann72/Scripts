@@ -36,12 +36,9 @@ alias www='cd ~/Development/www'
 
 # C-Projects
 alias dcpp='cd ~/Development/cpp'
+alias install='~/Development/Scripts/install.sh'
 compile() {
 /Users/patrik/Development/Scripts/compile.sh "$@"
-}
-
-install() {
-/Users/patrik/Development/Scripts/install.sh "$@"
 }
 
 cget() {
@@ -54,12 +51,12 @@ alias jpbl='run-jpublish.sh'
 
 # This function will copy an existing file from the HelloJWorld project.
 jget() {
-/Users/patrik/Development/Scripts/get-jcomponent.sh "$@"
+/Users/patrik/Development/Scripts/jget.sh "$@"
 }
 
 # This function will copy a new file from one of the templates.
 jnew() {
-/Users/patrik/Development/Scripts/get-jnew.sh "$@"
+/Users/patrik/Development/Scripts/jnew.sh "$@"
 }
 
 # All Nano Log and Config files.

@@ -1,5 +1,19 @@
 #!/bin/bash
-# A simple build script for C projects. It compiles all .c files in src/ and outputs the binary to bin/ with the same name as the current directory.
+# ------------------------------------------------------------------------------------
+# Script:       compile.sh
+# Description:  A simple build script for C projects. It calls pmake using the
+#               active directory name as the project name and forwards -DDEBUG
+#               when requested.
+# ------------------------------------------------------------------------------------
+# Author:       Patrik Eigenmann
+# email:        p.eigenmann72@gmail.com
+# GitHub:       https://github.com/PatrikEigenmann72/Scripts
+# ------------------------------------------------------------------------------------
+# Change Log:
+# Thu 2025-08-14 File created and content added.                        Version: 00.01
+# Thu 2026-04-30 Updated to use pmake and unified debug flag.           Version: 00.02
+# ------------------------------------------------------------------------------------
+
 show_help() {
 cat << EOF | less
 NAME
@@ -10,16 +24,15 @@ SYNOPSIS
 
 DESCRIPTION
     This script takes the active directory as project name and
-    compiles the source files in src/ into a binary and drops
-    it into bin/.
+    calls pmake to build the project.
 
 OPTIONS
     -h, -help, -?   Show this help menu
-    -debug          Compile with debug information
+    -DDEBUG         Compile with debug information (forwards -DDEBUG)
 
 EXAMPLES
     compile.sh
-    compile.sh -debug
+    compile.sh -DDEBUG
 EOF
 }
 
@@ -30,7 +43,6 @@ for arg in "$@"; do
             show_help
             exit 0
             ;;
-        # add other options here
     esac
 done
 
@@ -40,13 +52,14 @@ set -e
 PROJECT="$(basename "$PWD")"
 
 echo "Building $PROJECT..."
-mkdir -p bin
 
-if [ "$1" = "-debug" ]; then
-  echo "Compiling with DEBUG flag..."
-  gcc -Wall -Wextra -std=c99 -Iinclude src/*.c -o "bin/$PROJECT" -DDEBUG
+# Forward -DDEBUG only if requested
+if [ "$1" = "-DDEBUG" ]; then
+    echo "Compiling with -DDEBUG flag..."
+    pmake "$PROJECT" -DDEBUG
 else
-  gcc -Wall -Wextra -std=c99 -Iinclude src/*.c -o "bin/$PROJECT"
+    echo "Compiling for RELEASE..."
+    pmake "$PROJECT"
 fi
 
 echo "Done. Type 'bin/$PROJECT' to begin."
