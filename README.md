@@ -6,9 +6,9 @@ That’s the idea, at least.
 All scripts that I use for my tool-chain in c programming, java programming, and C# programming.
 
 ## Why This Exists
-Because I had to rebuild scripts from scratch for years. Finally I decided to keep them safe in
-in a place, just in case if my computer decides to take a dump, I "hopefully" can just connect to my
-GitHub and reinstall all my tools and small programms again.
+For years I kept rebuilding scripts from scratch every time a machine died or a drive failed.
+Eventually I got tired of reinventing the same tools, so I put everything in one place — safe, versioned, and easy to reinstall if my computer decides to take a dump.
+If that happens, I can just clone the repo and get back to work.
 
 ## Folder Structure
 
