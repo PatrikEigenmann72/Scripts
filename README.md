@@ -1,40 +1,53 @@
-# Bash Scripts Repository
+# Scripts
+All my scripts live in this folder, backed by a private remote repo so I never lose them again.
+That’s the idea, at least.
 
-Welcome to my personal Bash Scripts Repository! This repository contains a collection of useful Bash scripts primarly designed on MacOS to automate tasks, manage systems, and streamline workflows. I have
-used Microsoft's Visual Studio Code for developing these scripts, and all my scripts are versioned and
-have a very descriptive header information.
+## About
+All scripts that I use for my tool-chain in c programming, java programming, and C# programming.
 
-## Table of Contents
-- [Introduction](#introduction)
-- [Features](#features)
-- [Installation](#installation)
-- [Scripts](#scripts)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+## Why This Exists
+Because I had to rebuild scripts from scratch for years. Finally I decided to keep them safe in
+in a place, just in case if my computer decides to take a dump, I "hopefully" can just connect to my
+GitHub and reinstall all my tools and small programms again.
 
-## Introduction
-This repository is a compilation of Bash scripts that I have developed to solve common problems and perform routine tasks efficiently. Whether you're a sysadmin, developer, or just a Bash enthusiast, you'll find these scripts helpful in your day-to-day operations.
-
-## Features
-- Automate routine tasks
-- Manage system configurations
-- Streamline development workflows
-- Easy to customize and extend
-
-## Installation
-To get started with the repository, cd in your project's or development folder and run this git command.
+## Folder Structure
 
 ```
-git clone https://github.com/PatrikEigenmann/bash.git
+Scripts/
+├── .zshrc
+├── LICENSE
+├── Microsoft.PowerShell_profile.ps1
+├── README.md
+├── compile.bat
+├── compile.ps1
+├── compile.sh
+├── get.bat
+├── get.ps1
+├── get.sh
+├── install.bat
+├── install.ps1
+├── install.sh
+├── jcompile.sh
+├── jget.sh
+├── jnew.sh
+├── jpack.sh
+├── jproject.ps1
+├── jproject.sh
+├── jrun.sh
+├── new.bat
+├── new.ps1
+├── new.sh
+├── readme
+├── readme.bat
+└── readme.ps1
 ```
 
-## Scripts
-- cdget.sh -> cdget.sh means code get, copies different templates of various languages in the active folder.
-- hello_world.sh -> What would the scripting world be without a "Hello bash-world!" script.
+## Author
 
-## Licencing
-All my scripts and programs fall under the GNU Public License. See the License files.
+My name is Patrik Eigenmann. I learned to code when I was eight years old, long before it became my profession. Later I spent nine years as a software engineer, writing code because it was my job. When I moved into live sound, that obligation disappeared — but the curiosity stayed. I still write software because I want to understand things, not because someone assigns me a task. Coding keeps me sharp, and it gives me the freedom to explore ideas on my own terms.
+I work on projects in my spare time, usually because something catches my interest or I want to figure out how something works under the hood. Nothing I build is backed by a team or a company. It’s just me, learning and creating because I enjoy it.
+If you want to support my work, you can send a donation to p.eigenmann@gmx.net via PayPal. It’s optional, but appreciated.
+Everything I publish is free under the GNU Public License v3.0. Use it, modify it, break it, rebuild it — whatever helps you learn or solve your own problems.
 
-## Contact
-Patrik Eigenmann (p.eigenmann@gmx.net)
+## Last Updated
+Fri 2026-05-01
