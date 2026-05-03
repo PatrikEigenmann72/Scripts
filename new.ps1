@@ -9,9 +9,10 @@
 # GitHub:       https://github.com/PatrikEigenmann72/scripts.git
 # ----------------------------------------------------------------------------------------
 # Change Log:
-# Fri 2024-06-04 Script created.                                             Version: 00.01
-# Sat 2026-04-25 Project and module generation logic added.                  Version: 00.02
-# Fri 2026-05-01 Header cleanup, help menu, and script-family fixes.         Version: 00.03
+# Fri 2024-06-04 Script created.                                            Version: 00.01
+# Sat 2026-04-25 Project and module generation logic added.                 Version: 00.02
+# Fri 2026-05-01 Header cleanup, help menu, and script-family fixes.        Version: 00.03
+# Sat 2026-05-02 Added the resources/txt/project.txt to the copy list.      Version: 00.04
 # ----------------------------------------------------------------------------------------
 
 param(
@@ -69,27 +70,38 @@ if ($project) {
 
     $ALLCAPS = ($project.ToUpper() -replace '[^A-Z0-9]', '_') + "_H"
 
+    # Create folder structure
     New-Item -ItemType Directory -Force -Path "$projDir/include","$projDir/src","$projDir/bin","$projDir/resources","$projDir/scripts" | Out-Null
 
+    # Create txt folder and copy project identity template
+    New-Item -ItemType Directory -Force -Path "$projDir/resources/txt" | Out-Null
+    Copy-Item "$TEMPLATE/project.txt" "$projDir/resources/txt/project.txt"
+
+    # Copy static templates
     Copy-Item "$TEMPLATE/LICENSE"        "$projDir/LICENSE"
     Copy-Item "$TEMPLATE/.gitignore"     "$projDir/.gitignore"
 
+    # Copy readme script family
     Copy-Item "$TEMPLATE/readme"         "$projDir/scripts/readme"
     Copy-Item "$TEMPLATE/readme.ps1"     "$projDir/scripts/readme.ps1"
     Copy-Item "$TEMPLATE/readme.bat"     "$projDir/scripts/readme.bat"
 
+    # Copy install script family
     Copy-Item "$TEMPLATE/install.sh"     "$projDir/scripts/install.sh"
     Copy-Item "$TEMPLATE/install.ps1"    "$projDir/scripts/install.ps1"
     Copy-Item "$TEMPLATE/install.bat"    "$projDir/scripts/install.bat"
 
+    # Copy compile script family
     Copy-Item "$TEMPLATE/install.sh"     "$projDir/scripts/compile.sh"
     Copy-Item "$TEMPLATE/install.ps1"    "$projDir/scripts/compile.ps1"
     Copy-Item "$TEMPLATE/install.bat"    "$projDir/scripts/compile.bat"
 
+    # Copy new script family
     Copy-Item "$TEMPLATE/install.sh"     "$projDir/scripts/new.sh"
     Copy-Item "$TEMPLATE/install.ps1"    "$projDir/scripts/new.ps1"
     Copy-Item "$TEMPLATE/install.bat"    "$projDir/scripts/new.bat"
 
+    # Copy get script family
     Copy-Item "$TEMPLATE/install.sh"     "$projDir/scripts/get.sh"
     Copy-Item "$TEMPLATE/install.ps1"    "$projDir/scripts/get.ps1"
     Copy-Item "$TEMPLATE/install.bat"    "$projDir/scripts/get.bat"

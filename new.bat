@@ -12,6 +12,7 @@ REM Change Log:
 REM Fri 2024-06-04 Script created.                                             Version: 00.01
 REM Sat 2026-04-25 Project and module generation logic added.                  Version: 00.02
 REM Fri 2026-05-01 Header cleanup, help menu, and script-family fixes.         Version: 00.03
+REM Sat 2026-05-02 Added the <project>\resources\txt\project.txt copy step.    Version: 00.04
 REM ----------------------------------------------------------------------------------------
 
 if "%~1"=="" (
@@ -22,6 +23,7 @@ if "%~1"=="" (
 )
 
 set TEMPLATE=%USERPROFILE%\Development\Templates
+
 for /f "tokens=1-2" %%A in ("%*") do (
     if "%%A"=="-project" set PROJECTNAME=%%B
     if "%%A"=="-p"       set PROJECTNAME=%%B
@@ -44,34 +46,43 @@ if defined PROJECTNAME (
     set ALLCAPS=%ALLCAPS:"=%
     set ALLCAPS=%ALLCAPS:.=%
     set ALLCAPS=%ALLCAPS: =_%
-    set ALLCAPS=%ALLCAPS:_H=_H%
     set ALLCAPS=%ALLCAPS%_H
 
     mkdir "%PROJDIR%\include"
     mkdir "%PROJDIR%\src"
     mkdir "%PROJDIR%\bin"
     mkdir "%PROJDIR%\resources"
+    mkdir "%PROJDIR%\resources\txt"
     mkdir "%PROJDIR%\scripts"
 
+    REM Copy project identity file
+    copy "%TEMPLATE%\project.txt" "%PROJDIR%\resources\txt\project.txt" >nul
+
+    REM Copy static templates
     copy "%TEMPLATE%\LICENSE"        "%PROJDIR%\LICENSE" >nul
     copy "%TEMPLATE%\.gitignore"     "%PROJDIR%\.gitignore" >nul
 
+    REM Copy readme script family
     copy "%TEMPLATE%\readme"         "%PROJDIR%\scripts\readme" >nul
     copy "%TEMPLATE%\readme.ps1"     "%PROJDIR%\scripts\readme.ps1" >nul
     copy "%TEMPLATE%\readme.bat"     "%PROJDIR%\scripts\readme.bat" >nul
 
+    REM Copy install script family
     copy "%TEMPLATE%\install.sh"     "%PROJDIR%\scripts\install.sh" >nul
     copy "%TEMPLATE%\install.ps1"    "%PROJDIR%\scripts\install.ps1" >nul
     copy "%TEMPLATE%\install.bat"    "%PROJDIR%\scripts\install.bat" >nul
 
+    REM Copy compile script family
     copy "%TEMPLATE%\install.sh"     "%PROJDIR%\scripts\compile.sh" >nul
     copy "%TEMPLATE%\install.ps1"    "%PROJDIR%\scripts\compile.ps1" >nul
     copy "%TEMPLATE%\install.bat"    "%PROJDIR%\scripts\compile.bat" >nul
 
+    REM Copy new script family
     copy "%TEMPLATE%\install.sh"     "%PROJDIR%\scripts\new.sh" >nul
     copy "%TEMPLATE%\install.ps1"    "%PROJDIR%\scripts\new.ps1" >nul
     copy "%TEMPLATE%\install.bat"    "%PROJDIR%\scripts\new.bat" >nul
 
+    REM Copy get script family
     copy "%TEMPLATE%\install.sh"     "%PROJDIR%\scripts\get.sh" >nul
     copy "%TEMPLATE%\install.ps1"    "%PROJDIR%\scripts\get.ps1" >nul
     copy "%TEMPLATE%\install.bat"    "%PROJDIR%\scripts\get.bat" >nul

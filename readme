@@ -1,22 +1,24 @@
 #!/bin/bash
-# ------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------
 # Script:       readme
 # Description:  Regenerates README.md with About, Author, and a live file tree.
-# ------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------
 # Author:       Patrik Eigenmann
 # eMail:        p.eigenmann72@gmail.com
 # GitHub:       https://github.com/PatrikEigenmann72
-# ------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------
 # Change log:
-# Mon 2026-04-13 File created.                                          Version: 00.01
-# Tue 2026-04-14 Added the About and Author part.                       Version: 00.02
-# Wed 2026-04-15 First attempt to produce a live tree of the active d.  Version: 00.03
-# Thu 2026-04-16 Second attempt to produce a live tree of the directory.Version: 00.04
+# Mon 2026-04-13 File created.                                              Version: 00.01
+# Tue 2026-04-14 Added the About and Author part.                           Version: 00.02
+# Wed 2026-04-15 First attempt to produce a live tree of the active d.      Version: 00.03
+# Thu 2026-04-16 Second attempt to produce a live tree of the directory.    Version: 00.04
 # Sun 2026-04-19 Decided to write a tree clone, because MacOS doesn't ship
 #                with the UNIX tree tool organically. And I don't like homebrew,
-#                so I homebrewed myself -> happy having some C skills.  Version: 00.05
-# Wed 2026-04-22 Fixing a bug, display issues and heredoc issues.       Version: 00.06
-# ------------------------------------------------------------------------------------
+#                so I homebrewed myself -> happy having some C skills.      Version: 00.05
+# Wed 2026-04-22 Fixing a bug, display issues and heredoc issues.           Version: 00.06
+# Sat 2026-05-02 Dynamic content management for About/Why per project.      Version: 00.07
+# Sat 2026-05-02 Changed absolut path to print the working directory. $PWD. Version: 00.08
+# ----------------------------------------------------------------------------------------
 PROJECT=$(basename "$PWD")
 TODAY=$(date +"%a %Y-%m-%d")
 
@@ -24,16 +26,13 @@ TREE=$(treeclone)
 
 cat > README.md <<EOF
 # $PROJECT
-All my scripts live in this folder, backed by a private remote repo so I never lose them again.
-That’s the idea, at least.
 
-## About
-These are the scripts I use across my tool‑chains for C, Java, and C# development.
+EOF
 
-## Why This Exists
-For years I kept rebuilding scripts from scratch every time a machine died or a drive failed.
-Eventually I got tired of reinventing the same tools, so I put everything in one place — safe, versioned, and easy to reinstall if my computer decides to take a dump.
-If that happens, I can just clone the repo and get back to work.
+# Insert project‑specific text
+cat $PWD/resources/txt/project.txt >> README.md
+
+cat >> README.md <<EOF
 
 ## Folder Structure
 

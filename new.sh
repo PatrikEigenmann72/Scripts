@@ -1,18 +1,19 @@
 #!/bin/bash
-# ----------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------
 # Script:       new.sh
 # Description:  Create new C projects and modules using templates, parameters,
 #               and naming conventions.
-# ----------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------
 # Author:       Patrik Eigenmann
 # eMail:        p.eigenmann72@gmail.com
 # GitHub:       https://github.com/PatrikEigenmann72/scripts.git
-# ----------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------
 # Change Log:
-# Fri 2024-06-04 Script created.                                             Version: 00.01
-# Sat 2026-04-25 Project and module generation logic added.                  Version: 00.02
-# Fri 2026-05-01 Header cleanup, help menu, and script-family fixes.         Version: 00.03
-# ----------------------------------------------------------------------------------------
+# Fri 2024-06-04 Script created.                                                Version: 00.01
+# Sat 2026-04-25 Project and module generation logic added.                     Version: 00.02
+# Fri 2026-05-01 Header cleanup, help menu, and script-family fixes.            Version: 00.03
+# Sat 2026-05-02 Added the resources/txt/project.txt to the copy list.          Version: 00.04
+# --------------------------------------------------------------------------------------------
 
 # -----------------------------------------
 # Manpage-style help
@@ -98,6 +99,8 @@ if [[ -n "$PROJECTNAME" ]]; then
 
     # Create folder structure
     mkdir -p "$PROJECTNAME"/{include,src,bin,resources,scripts}
+    mkdir -p "$PROJECTNAME/resources/txt"
+    cp "$TEMPLATE_DIR/project.txt" "$PROJECTNAME/resources/txt/project.txt"
 
     # Copy static templates
     cp "$TEMPLATE_DIR/LICENSE"        "$PROJECTNAME/LICENSE"
