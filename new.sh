@@ -92,15 +92,17 @@ if [[ -n "$PROJECTNAME" ]]; then
     FILENAME="$PROJECTNAME"
 
     # Include guard for project
-    ALLCAPS_PROJECT=$(echo "$PROJECTNAME" \
+    ALLCAPS_FILENAME=$(echo "$PROJECTNAME" \
         | tr '[:lower:]' '[:upper:]' \
         | sed -e 's/[^A-Z0-9]/_/g')
-    ALLCAPS_PROJECT="${ALLCAPS_PROJECT}_H"
+    ALLCAPS_PROJECT="${ALLCAPS_FILENAME}_H"
 
     # Create folder structure
     mkdir -p "$PROJECTNAME"/{include,src,bin,resources,scripts}
     mkdir -p "$PROJECTNAME/resources/txt"
+
     cp "$TEMPLATE_DIR/project.txt" "$PROJECTNAME/resources/txt/project.txt"
+    cp "$TEMPLATE_DIR/samael.huginandmunin.debug.h" "$PROJECTNAME/include/samael.huginandmunin.debug.h"
 
     # Copy static templates
     cp "$TEMPLATE_DIR/LICENSE"        "$PROJECTNAME/LICENSE"
@@ -138,7 +140,7 @@ if [[ -n "$PROJECTNAME" ]]; then
     # Generate project header
     sed \
         -e "s/{PROJECT}/$PROJECTNAME/g" \
-        -e "s/{ALLCAPS_PROJECT}/$ALLCAPS_PROJECT/g" \
+        -e "s/{ALLCAPS_FILENAME}/$ALLCAPS_FILENAME/g" \
         -e "s/{DATE}/$TODAY/g" \
         -e "s/{FILENAME}/$FILENAME/g" \
         "$TEMPLATE_DIR/project.h" > "$PROJECTNAME/include/$PROJECTNAME.h"
@@ -157,6 +159,13 @@ if [[ -n "$PROJECTNAME" ]]; then
         -e "s/{ALLCAPS_PROJECT}/$ALLCAPS_PROJECT/g" \
         -e "s/{DATE}/$TODAY/g" \
         "$TEMPLATE_DIR/main.c" > "$PROJECTNAME/src/main.c"
+
+    # Generate <project>.pmake
+    sed \
+        -e "s/{PROJECT}/$PROJECTNAME/g" \
+        -e "s/{ALLCAPS_PROJECT}/$ALLCAPS_PROJECT/g" \
+        -e "s/{DATE}/$TODAY/g" \
+        "$TEMPLATE_DIR/project.pmake" > "$PROJECTNAME/$PROJECTNAME.pmake"
 
     exit 0
 fi
